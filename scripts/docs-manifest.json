@@ -1,0 +1,23 @@
+{
+  "ref": "main",
+  "repos": {
+    "code": { "name": "straatwijsheid", "env": "SW_CODE_DIR" },
+    "knowledge": { "name": "knowledge", "env": "SW_KNOWLEDGE_DIR" }
+  },
+  "groups": ["Start here", "Method and data", "The map", "Contribute", "Sources and licences"],
+  "pages": [
+    { "repo": "code", "path": "README.md", "slug": "overview", "title": "Project overview", "group": "Start here", "order": 1, "description": "What Straatwijsheid is, how to run it, and how the repositories fit together." },
+    { "repo": "code", "path": "docs/method.md", "slug": "method", "title": "Method and principles", "group": "Method and data", "order": 1, "description": "How a street's namesake is worked out, and how sure we are." },
+    { "repo": "code", "path": "docs/pipeline.md", "slug": "pipeline", "title": "Pipeline guide", "group": "Method and data", "order": 2, "description": "The stages from OpenStreetMap to the map, and the commands that run them." },
+    { "repo": "code", "path": "docs/data-dictionary.md", "slug": "data-dictionary", "title": "Data dictionary", "group": "Method and data", "order": 3, "description": "Every field in the published data." },
+    { "repo": "code", "path": "docs/limitations.md", "slug": "limitations", "title": "Known limitations", "group": "Method and data", "order": 4, "description": "What the data does not tell you." },
+    { "repo": "code", "path": "docs/map.md", "slug": "map-guide", "title": "Map guide", "group": "The map", "order": 1, "description": "What you see on the map, the panel and search, and the data files." },
+    { "repo": "code", "path": "docs/publishing.md", "slug": "publishing", "title": "Publishing the map", "group": "The map", "order": 2, "description": "How the map is packaged and deployed." },
+    { "repo": "code", "path": "CONTRIBUTING.md", "slug": "contributing", "title": "Contributing", "group": "Contribute", "order": 1, "description": "How to contribute to the code and the data." },
+    { "repo": "knowledge", "path": "REVIEWING.md", "slug": "reviewing", "title": "Filling in a review sheet", "group": "Contribute", "order": 2, "description": "How to answer a gemeente's review sheet. In Dutch and English." },
+    { "repo": "code", "path": "docs/repository-model.md", "slug": "repository-model", "title": "Repository model", "group": "Contribute", "order": 3, "description": "How the code and knowledge repositories relate." },
+    { "repo": "knowledge", "path": "README.md", "slug": "knowledge", "title": "The knowledge repository", "group": "Contribute", "order": 4, "description": "What the knowledge repository holds and how it is organised." },
+    { "repo": "code", "path": "NOTICE.md", "slug": "sources-and-licences", "title": "Data sources and licences", "group": "Sources and licences", "order": 1, "description": "Where the data comes from and under which licences." },
+    { "repo": "knowledge", "path": "ATTRIBUTION.md", "slug": "attribution", "title": "Attribution", "group": "Sources and licences", "order": 2, "description": "Credit for contributed knowledge." }
+  ]
+}

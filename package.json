@@ -6,7 +6,10 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "tokens": "python3 branding/build_tokens.py"
+    "tokens": "python3 branding/build_tokens.py",
+    "sync": "node scripts/sync-docs.mjs",
+    "predev": "npm run sync",
+    "prebuild": "npm run sync"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.43.1",
