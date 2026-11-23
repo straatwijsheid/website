@@ -22,11 +22,18 @@
 
 h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.01em; }
 
-/* The header is a Dutch-blue sign band. */
-.header { color: var(--sw-brand-ink); border-bottom: 4px solid var(--sw-accent); }
-:root[data-theme='dark'] .header { background: #0b3a6b; color: #fff; }
-.header .site-title, .header a { color: inherit; }
-:root[data-theme='light'] .header { background: var(--sw-brand); }
+/* The header is a Dutch-blue sign band with one orange rule. Starlight nests two
+   elements with class "header"; only the outer <header> gets the rule. */
+header.header { background: var(--sw-brand); color: #fff; border-bottom: 4px solid var(--sw-accent); }
+:root[data-theme='dark'] header.header { background: #0b3a6b; }
+header.header .site-title, header.header a { color: inherit; }
+
+/* Tighter hero: less dead space, smaller mark. */
+.hero.hero.hero { padding-block: clamp(1.5rem, 4vmin, 3rem) 0.5rem; }
+.hero.hero.hero > img { width: min(100%, 15rem); }
+
+/* Three cards in a row, wrapping on narrow screens. */
+.card-grid.card-grid.card-grid { grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
 
 /* The oranje accent: the main call to action. */
 .sl-link-button.primary {
@@ -39,6 +46,7 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.01em; }
 a:focus-visible, button:focus-visible { outline: 3px solid var(--sw-focus); outline-offset: 2px; }
 
 .sw-kinds { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); margin-block: 1.5rem; }
+.sw-kinds > .sw-kind { margin-top: 0; }
 .sw-kind { border-radius: var(--sw-radius-lg); padding: 1rem 1.25rem; border-left: 8px solid var(--c); background: var(--t); }
 .sw-kind h3 { margin: 0 0 .25rem; color: var(--x); }
 .sw-kind p { margin: 0; color: var(--sw-ink); }
