@@ -50,4 +50,4 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--sw-focus); outl
 .sw-kind { border-radius: var(--sw-radius-lg); padding: 1rem 1.25rem; border-left: 8px solid var(--c); background: var(--t); }
 .sw-kind h3 { margin: 0 0 .25rem; color: var(--x); }
 .sw-kind p { margin: 0; color: var(--sw-ink); }
-.sw-embed { width: 100%; height: min(75vh, 640px); border: 3px solid var(--sw-brand); border-radius: var(--sw-radius-lg); }
+.sw-embed { width: 100%; height: max(32rem, calc(100svh - 11rem)); border: 3px solid var(--sw-brand); border-radius: var(--sw-radius-lg); }
