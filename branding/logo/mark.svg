@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Straatwijsheid">
+  <title>Straatwijsheid</title>
+  <rect x="3" y="9" width="58" height="46" rx="7" fill="#0b5aa6"/>
+  <rect x="6.5" y="12.5" width="51" height="39" rx="4" fill="none" stroke="#fff" stroke-width="1.8"/>
+  <path d="M19 44V24M12.5 29.5 19 21l6.500 8.500" fill="none" stroke="#fff" stroke-width="4.200" stroke-linecap="round" stroke-linejoin="round"/>
+  <g stroke="#fff" stroke-width="1.400">
+    <rect x="33" y="17" width="19" height="8" rx="2" fill="#2563eb"/>
+    <rect x="33" y="28" width="19" height="8" rx="2" fill="#16a34a"/>
+    <rect x="33" y="39" width="19" height="8" rx="2" fill="#ff6a13"/>
+  </g>
+</svg>

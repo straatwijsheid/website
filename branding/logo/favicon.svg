@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Straatwijsheid">
+  <title>Straatwijsheid</title>
+  <rect x="2" y="2" width="60" height="60" rx="12" fill="#0b5aa6"/>
+  <rect x="7" y="7" width="50" height="50" rx="8" fill="none" stroke="#fff" stroke-width="2.400"/>
+  <path d="M25 47V19M16 27 25 16l9 11" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="38" y="30" width="17" height="14" rx="3" fill="#ff6a13" stroke="#fff" stroke-width="2"/>
+</svg>
