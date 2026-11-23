@@ -1,0 +1,45 @@
+/* Maps the Straatwijsheid tokens (branding/tokens.css) onto Starlight's variables. */
+:root,
+:root[data-theme='light'],
+:root[data-theme='dark'] {
+  --sl-font: var(--sw-font-body);
+  --sl-color-white: var(--sw-ink);
+  --sl-color-black: var(--sw-paper);
+  --sl-color-gray-1: var(--sw-ink);
+  --sl-color-gray-2: var(--sw-ink);
+  --sl-color-gray-3: var(--sw-ink-muted);
+  --sl-color-gray-4: var(--sw-ink-muted);
+  --sl-color-gray-5: var(--sw-line);
+  --sl-color-gray-6: var(--sw-surface);
+  --sl-color-gray-7: var(--sw-paper);
+  --sl-color-bg-nav: var(--sw-brand);
+  --sl-color-hairline: var(--sw-line);
+  --sl-color-accent-low: var(--sw-person-tint);
+  --sl-color-accent: var(--sw-brand);
+  --sl-color-accent-high: var(--sw-link);
+  --sl-color-text-accent: var(--sw-link);
+}
+
+h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.01em; }
+
+/* The header is a Dutch-blue sign band. */
+.header { color: var(--sw-brand-ink); border-bottom: 4px solid var(--sw-accent); }
+:root[data-theme='dark'] .header { background: #0b3a6b; color: #fff; }
+.header .site-title, .header a { color: inherit; }
+:root[data-theme='light'] .header { background: var(--sw-brand); }
+
+/* The oranje accent: the main call to action. */
+.sl-link-button.primary {
+  background: var(--sw-accent);
+  border-color: var(--sw-accent);
+  color: var(--sw-accent-ink);
+  font-weight: 700;
+}
+.sl-link-button.primary:hover { filter: brightness(1.06); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--sw-focus); outline-offset: 2px; }
+
+.sw-kinds { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); margin-block: 1.5rem; }
+.sw-kind { border-radius: var(--sw-radius-lg); padding: 1rem 1.25rem; border-left: 8px solid var(--c); background: var(--t); }
+.sw-kind h3 { margin: 0 0 .25rem; color: var(--x); }
+.sw-kind p { margin: 0; color: var(--sw-ink); }
+.sw-embed { width: 100%; height: min(75vh, 640px); border: 3px solid var(--sw-brand); border-radius: var(--sw-radius-lg); }

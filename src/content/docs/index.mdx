@@ -1,0 +1,32 @@
+---
+title: Straatwijsheid
+description: What are Dutch streets named after? An open map and dataset.
+template: splash
+hero:
+  tagline: Where the streets have a name. Explore what Dutch streets are named after, and help us name the ones we can't yet.
+  image:
+    file: ../../../branding/logo/mark.svg
+  actions:
+    - text: Explore the map
+      link: /map/
+      icon: right-arrow
+    - text: Help name a street
+      link: /meedoen/
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+Every street is named after **a person, a place or a thing**. Straatwijsheid works out which, shows how sure we are, and lets anyone correct us.
+
+<div class="sw-kinds">
+  <div class="sw-kind" style="--c: var(--sw-person-base); --t: var(--sw-person-tint); --x: var(--sw-person-text)"><h3>Person</h3><p>Writers, scientists, statesmen, artists.</p></div>
+  <div class="sw-kind" style="--c: var(--sw-place-base); --t: var(--sw-place-tint); --x: var(--sw-place-text)"><h3>Place</h3><p>Towns, regions, castles, natural features.</p></div>
+  <div class="sw-kind" style="--c: var(--sw-thing-base); --t: var(--sw-thing-tint); --x: var(--sw-thing-text)"><h3>Thing or concept</h3><p>Plants, animals, crafts, ideas.</p></div>
+</div>
+
+<CardGrid>
+  <Card title="Open data" icon="document">The pipeline, the method and the data are open and documented. Start with [the documentation](/docs/about/).</Card>
+  <Card title="Evidence, not guesses" icon="approve-check">Every street carries an evidence tier, from identified with external evidence to not identified.</Card>
+  <Card title="Anyone can help" icon="pencil">You don't need a GitHub account. [Take part](/meedoen/).</Card>
+</CardGrid>
