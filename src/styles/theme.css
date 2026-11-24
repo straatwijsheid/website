@@ -51,3 +51,28 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--sw-focus); outl
 .sw-kind h3 { margin: 0 0 .25rem; color: var(--x); }
 .sw-kind p { margin: 0; color: var(--sw-ink); }
 .sw-embed { width: 100%; height: max(32rem, calc(100svh - 11rem)); border: 3px solid var(--sw-brand); border-radius: var(--sw-radius-lg); }
+
+/* Contribution form */
+.sw-form { max-width: 38rem; }
+.sw-form p { margin: 0 0 var(--sw-space-4); }
+.sw-form label { display: block; font-weight: var(--sl-font-weight-semibold, 600); margin-bottom: var(--sw-space-1); }
+.sw-form input:not([type='checkbox']), .sw-form textarea {
+  width: 100%; padding: var(--sw-space-2) var(--sw-space-3); font: inherit; color: var(--sw-ink);
+  background: var(--sw-surface); border: 1px solid var(--sw-line); border-radius: var(--sw-radius-sm);
+}
+.sw-form input:focus-visible, .sw-form textarea:focus-visible, .sw-form button:focus-visible {
+  outline: 3px solid var(--sw-focus); outline-offset: 2px;
+}
+.sw-form .sw-check { display: flex; gap: var(--sw-space-2); align-items: flex-start; }
+.sw-form .sw-check label { font-weight: 400; margin: 0; }
+.sw-form .sw-form-note { color: var(--sw-ink-muted); font-size: 0.9em; }
+.sw-form .sw-hp { position: absolute; left: -10000px; height: 0; overflow: hidden; }
+.sw-form .sw-submit {
+  background: var(--sw-accent); color: var(--sw-accent-ink); font: inherit; font-weight: 700;
+  border: 0; border-radius: var(--sw-radius-md); padding: var(--sw-space-3) var(--sw-space-6); cursor: pointer;
+}
+.sw-form .sw-submit:disabled { opacity: 0.6; cursor: wait; }
+.sw-status:empty { display: none; }
+.sw-status { padding: var(--sw-space-3); border-radius: var(--sw-radius-md); border: 1px solid var(--sw-line); overflow-wrap: anywhere; }
+.sw-status.ok { border-color: var(--sw-place-base); background: var(--sw-place-tint); color: var(--sw-place-text); }
+.sw-status.err { border-color: var(--sw-thing-base); background: var(--sw-thing-tint); color: var(--sw-thing-text); }

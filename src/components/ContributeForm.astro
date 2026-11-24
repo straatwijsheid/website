@@ -1,0 +1,90 @@
+---
+// The contribution form. It posts to the Cloudflare Worker in worker/. It is only rendered when the site is built with
+// PUBLIC_FORM_URL (the Worker's /submit address) and PUBLIC_TURNSTILE_SITEKEY; otherwise visitors see the GitHub route only.
+const formUrl = import.meta.env.PUBLIC_FORM_URL;
+const sitekey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY;
+const enabled = Boolean(formUrl && sitekey);
+---
+{enabled ? (
+  <>
+    <noscript>
+      <p><strong>The form needs JavaScript.</strong> Without it, use the GitHub route above.</p>
+    </noscript>
+    <form class="sw-form" id="sw-form" method="post" data-endpoint={formUrl} novalidate>
+      <p class="sw-form-note">Fields marked * are required. <strong>Everything you write here becomes a public GitHub issue</strong>,
+        including your name if you give one. Only your email address stays private.</p>
+
+      <p><label for="sw-street">Street *</label>
+        <input id="sw-street" name="street" required maxlength="120" autocomplete="off" /></p>
+      <p><label for="sw-gemeente">Gemeente *</label>
+        <input id="sw-gemeente" name="gemeente" required maxlength="80" autocomplete="off" /></p>
+      <p><label for="sw-answer">What is it named after, or what is wrong? *</label>
+        <textarea id="sw-answer" name="answer" required maxlength="2000" rows="5"></textarea></p>
+      <p><label for="sw-source">Source (a link or a reference)</label>
+        <input id="sw-source" name="source" maxlength="500" /></p>
+      <p><label for="sw-name">Name, if you want to be credited (public)</label>
+        <input id="sw-name" name="name" maxlength="80" autocomplete="name" /></p>
+      <p><label for="sw-email">Email, if you would like a reply (kept privately for up to 90 days)</label>
+        <input id="sw-email" name="email" type="email" maxlength="254" autocomplete="email" /></p>
+
+      <p class="sw-hp" aria-hidden="true"><label>Leave this empty <input name="website" tabindex="-1" autocomplete="off" /></label></p>
+
+      <p class="sw-check"><input id="sw-consent" name="consent" type="checkbox" required />
+        <label for="sw-consent">I agree my answer may be published under
+          <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>, credited as I wish. *</label></p>
+
+      <div class="cf-turnstile" data-sitekey={sitekey}></div>
+
+      <p><button type="submit" class="sw-submit">Send</button></p>
+      <p class="sw-form-note">See the <a href="/privacy/">privacy page</a> for what is stored.</p>
+      <p id="sw-status" class="sw-status" role="status" aria-live="polite" tabindex="-1"></p>
+    </form>
+    <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <script>
+      const form = document.getElementById('sw-form') as HTMLFormElement;
+      const status = document.getElementById('sw-status')!;
+      const messages: Record<string, string> = {
+        required: 'Please fill in the fields marked *.',
+        too_long: 'One of the fields is too long.',
+        email: 'That email address does not look right.',
+        consent: 'Please tick the box to agree to publication under CC-BY 4.0.',
+        turnstile: 'The spam check failed. Please try again.',
+        rate_limited: 'Too many submissions. Please try again later.',
+      };
+      const say = (text: string, ok = false) => {
+        status.className = 'sw-status ' + (ok ? 'ok' : 'err');
+        status.textContent = text;
+        status.focus();
+      };
+      form.addEventListener('submit', async (ev) => {
+        ev.preventDefault();
+        const data = Object.fromEntries(new FormData(form).entries()) as Record<string, unknown>;
+        data.consent = (form.elements.namedItem('consent') as HTMLInputElement).checked;
+        const button = form.querySelector('button')!;
+        button.disabled = true;
+        say('Sending…');
+        try {
+          const r = await fetch(form.dataset.endpoint!, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+          const j = await r.json().catch(() => ({}));
+          if (r.ok && j.ok) {
+            form.reset();
+            say(j.url ? `Thank you! Your proposal is public as issue #${j.issue}: ${j.url}` : 'Thank you! Your proposal has been received.', true);
+          } else {
+            say(messages[j.error] ?? 'Something went wrong on our side. Please try again later, or use the GitHub route.');
+          }
+        } catch {
+          say('Could not reach the form service. Please try again later, or use the GitHub route.');
+        } finally {
+          button.disabled = false;
+          (window as any).turnstile?.reset();
+        }
+      });
+    </script>
+  </>
+) : (
+  <p><em>The form is not switched on yet.</em></p>
+)}

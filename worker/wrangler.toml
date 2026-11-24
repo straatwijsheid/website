@@ -1,0 +1,14 @@
+name = "straatwijsheid-form"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+
+[vars]
+ISSUE_REPO = "straatwijsheid/knowledge"
+ALLOWED_ORIGIN = "https://straatwijsheid.nl"
+
+# Create once:  npx wrangler kv namespace create EMAILS   and paste the id here.
+[[kv_namespaces]]
+binding = "EMAILS"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+# Secrets (never in this file):  npx wrangler secret put GH_TOKEN   and   npx wrangler secret put TURNSTILE_SECRET

@@ -27,6 +27,8 @@ jobs:
       - run: npm run build
         env:
           CF_BEACON_TOKEN: ${{ vars.CF_BEACON_TOKEN }}
+          PUBLIC_FORM_URL: ${{ vars.PUBLIC_FORM_URL }}
+          PUBLIC_TURNSTILE_SITEKEY: ${{ vars.PUBLIC_TURNSTILE_SITEKEY }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
