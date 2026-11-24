@@ -3,13 +3,13 @@ title: Privacy
 description: What data Straatwijsheid collects, why, who can see it and how to have it removed.
 ---
 
-*Last updated 24 November 2026.*
+*Last updated 25 November 2026.*
 
 Straatwijsheid is a hobby project and an open dataset. It collects as little as possible.
 
 ## Who is responsible
 
-Marius Strom is responsible for the data described here (the "controller" under the GDPR/AVG). To reach me, [open an issue](https://github.com/straatwijsheid/website/issues/new) or use the contribution form once it is live. I do not publish a postal address.
+Marius Strom is responsible for the data described here (the "controller" under the GDPR/AVG). To reach me, [open an issue](https://github.com/straatwijsheid/website/issues/new) or use the contribution form on the [Take part](/meedoen/) page (give an email address there if you want a reply). I do not publish a postal address.
 
 ## Visiting the site
 
@@ -23,11 +23,12 @@ The site uses no advertising and no social-media trackers. Your light or dark pr
 
 ## Proposing a change or reporting a problem
 
-On GitHub, what you write is public and governed by [GitHub's terms](https://docs.github.com/en/site-policy). A contribution form is planned for people without a GitHub account. When it is live this page will be updated, and it will work like this:
+On GitHub, what you write is public and governed by [GitHub's terms](https://docs.github.com/en/site-policy). For people without a GitHub account there is a form on the [Take part](/meedoen/) page. It works like this:
 
-- Your proposal or report becomes a **public** issue in the [knowledge repository](https://github.com/straatwijsheid/knowledge). Do not put anything private in it.
-- An email address is optional. If you give one, it is **not** put in the public issue. It is stored privately for up to 90 days so I can reply, then deleted automatically.
-- The form uses Cloudflare Turnstile to keep out spam. Cloudflare processes your IP address and browser signals for that purpose.
+- Your proposal or report becomes a **public** issue in the [knowledge repository](https://github.com/straatwijsheid/knowledge), including your name if you give one. Do not put anything private in it. The form service creates the issue for you, so your IP address and email address are not in it.
+- An email address is optional. If you give one, it is **not** put in the public issue, which says only "contact on file". It is stored privately in Cloudflare Workers KV for up to 90 days so I can reply, then deleted automatically.
+- Cloudflare Turnstile checks that you are a person and not a bot. Cloudflare processes your IP address and browser signals for that purpose, under [its own privacy policy](https://www.cloudflare.com/privacypolicy/). The form service runs on Cloudflare Workers, so your submission passes through Cloudflare on its way to GitHub.
+- The form service does not log what you write.
 - By contributing you agree your answer may be published under CC-BY 4.0, credited as you wish.
 
 ## Your rights
