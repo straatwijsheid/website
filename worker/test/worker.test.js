@@ -74,7 +74,15 @@ test('a failed Turnstile check is refused and no issue is created', async () => 
   const calls = stubFetch({ turnstile: false });
   const r = await worker.fetch(post(good), env());
   assert.equal(r.status, 403);
+  assert.equal((await r.json()).error, 'turnstile');
   assert.ok(!calls.some((c) => c.url.includes('api.github.com')));
+});
+
+test('a missing token reports missing-token', async () => {
+  stubFetch();
+  const { 'cf-turnstile-response': _drop, ...noToken } = good;
+  const r = await worker.fetch(post(noToken), env());
+  assert.deepEqual((await r.json()).codes, ['missing-token']);
 });
 
 test('GitHub failing gives a generic 502 and stores nothing', async () => {

@@ -67,13 +67,15 @@ export function issueFrom(v) {
   return { title, body: lines.join('\n') };
 }
 
+/** Returns { ok, codes }: codes are Cloudflare's error codes (not sensitive), kept so a failure can be diagnosed. */
 async function verifyTurnstile(env, token, ip) {
-  if (!token) return false;
+  if (!token) return { ok: false, codes: ['missing-token'] };
   const form = new URLSearchParams({ secret: env.TURNSTILE_SECRET, response: token });
   if (ip) form.set('remoteip', ip);
   const r = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', { method: 'POST', body: form });
-  if (!r.ok) return false;
-  return (await r.json()).success === true;
+  if (!r.ok) return { ok: false, codes: [`siteverify-http-${r.status}`] };
+  const j = await r.json();
+  return { ok: j.success === true, codes: j['error-codes'] || [] };
 }
 
 async function createIssue(env, issue) {
@@ -117,8 +119,10 @@ export default {
     if (checked.error) return json(422, { ok: false, error: checked.error, field: checked.field }, headers);
 
     const ip = request.headers.get('CF-Connecting-IP');
-    if (!(await verifyTurnstile(env, input['cf-turnstile-response'], ip))) {
-      return json(403, { ok: false, error: 'turnstile' }, headers);
+    const ts = await verifyTurnstile(env, input['cf-turnstile-response'], ip);
+    if (!ts.ok) {
+      console.error('turnstile refused:', ts.codes.join(','));
+      return json(403, { ok: false, error: 'turnstile', codes: ts.codes }, headers);
     }
     if (env.LIMITER && !(await env.LIMITER.limit({ key: ip || 'unknown' })).success) {
       return json(429, { ok: false, error: 'rate_limited' }, headers);
