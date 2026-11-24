@@ -74,7 +74,7 @@ const enabled = Boolean(formUrl && sitekey);
             form.reset();
             say(j.url ? `Thank you! Your proposal is public as issue #${j.issue}: ${j.url}` : 'Thank you! Your proposal has been received.', true);
           } else {
-            say(messages[j.error] ?? 'Something went wrong on our side. Please try again later, or use the GitHub route.');
+            say((messages[j.error] ?? 'Something went wrong on our side. Please try again later, or use the GitHub route.') + (j.codes?.length ? ` (${j.codes.join(', ')})` : ''));
           }
         } catch {
           say('Could not reach the form service. Please try again later, or use the GitHub route.');
